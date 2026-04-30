@@ -15,10 +15,10 @@ export class Add implements OnInit {
 
   // Behållaren för det nya som skrivs in
   newExperience = {
-    companyname: '',
-    jobtitle: '',
-    location: '',
-    description: ''
+    companyname: "",
+    jobtitle: "",
+    location: "",
+    description: ""
   };
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class Add implements OnInit {
   // Hämta data
   async getData() {
     try {
-      const res = await fetch("http://localhost:5001/workexperience");
+      const res = await fetch("http://localhost:3000/workexperiences");
       if (res.ok) {
         this.workExperiences = await res.json();
       }
@@ -39,19 +39,26 @@ export class Add implements OnInit {
 
   // SPARA DATA 
   async addExperience() {
+   
+    console.log("Data som skickas:", this.newExperience);
+  
     try {
-      const res = await fetch("http://localhost:5001/workexperience", { 
+      const res = await fetch("http://localhost:3000/workexperiences", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.newExperience)
+        body: JSON.stringify(this.newExperience) 
       });
-
+  
       if (res.ok) {
-        // Töm formuläret
-        this.newExperience = { companyname: '', jobtitle: '', location: '', description: '' };
-        // Uppdatera listan
+        // Töm formuläret FÖRST NÄR VI VET att det lyckades (res.ok)
+        this.newExperience = { 
+          companyname: '', 
+          jobtitle: '', 
+          location: '', 
+          description: '' 
+        };
         this.getData();
       }
     } catch (error) {
@@ -62,7 +69,7 @@ export class Add implements OnInit {
 //Radera erfarenhet
 async deleteExperience(id: string) {
   try {
-    const res = await fetch(`http://localhost:5001/workexperience/${id}`, {
+    const res = await fetch(`http://localhost:3000/workexperiences/${id}`, {
       method: "DELETE"
     });
 
