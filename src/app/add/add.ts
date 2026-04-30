@@ -58,4 +58,22 @@ export class Add implements OnInit {
       console.error("Kunde inte spara", error);
     }
   }
+
+//Radera erfarenhet
+async deleteExperience(id: string) {
+  try {
+    const res = await fetch(`http://localhost:5001/workexperience/${id}`, {
+      method: "DELETE"
+    });
+
+    if (res.ok) {
+      //Om det gick bra på servern, hämta listan igen så den raderade posten försvinner från mitt CV
+      this.getData();
+    } else {
+      alert("Gick inte att radera från servern.");
+    }
+  } catch (error) {
+    console.error("Fel vid radering:", error)
+  }
+}
 } 
