@@ -2,4 +2,10 @@ p {
   line-height: 1.8;
   margin-bottom: 20px;
   font-size: 1.05;
+ 
+}
+
+main {
+  text-align: start;
+  max-width: 65vw;
 }

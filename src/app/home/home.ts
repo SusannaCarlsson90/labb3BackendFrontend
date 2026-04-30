@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
 export class Home implements OnInit {
   workExperiences: any[] = [];
 
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit() {
     this.getData();
   }
@@ -20,9 +24,14 @@ export class Home implements OnInit {
       const res = await fetch("http://localhost:3000/workexperiences");
       if (res.ok) {
         this.workExperiences = await res.json();
+        
+       
+        this.cdr.detectChanges(); 
+        
+        console.log("Data har landat i variabeln:", this.workExperiences);
       }
     } catch (error) {
-      console.error("Kunde inte hämta data till startsidan", error);
+      console.error("Kunde inte hämta data", error);
     }
   }
 }

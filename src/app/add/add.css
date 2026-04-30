@@ -1,0 +1,12 @@
+#app {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#app input, textarea {
+  width: 40vw;
+  height: 5vw;
+}

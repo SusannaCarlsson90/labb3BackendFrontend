@@ -39,8 +39,13 @@ export class Add implements OnInit {
 
   // SPARA DATA 
   async addExperience() {
-   
-    console.log("Data som skickas:", this.newExperience);
+
+    //Validering, inga tomma fält
+   if (!this.newExperience.companyname || !this.newExperience.jobtitle || 
+    !this.newExperience.location || !this.newExperience.description){
+      alert("Vänligen fyll i alla fält innan du sparar!");
+      return;
+    }
   
     try {
       const res = await fetch("http://localhost:3000/workexperiences", { 

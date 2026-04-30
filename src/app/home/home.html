@@ -3,6 +3,17 @@
     <h1>Mina Arbetserfarenheter</h1>
     
     <div id="experience-list">
-      </div>
+      @for (work of workExperiences; track work._id) {
+        <div class="work-item">
+          <h3>{{ work.jobtitle }}</h3>
+          <p><strong>Företag:</strong> {{ work.companyname }}</p>
+          <p><strong>Plats:</strong> {{ work.location }}</p>
+          <p>{{ work.description }}</p>
+          <hr>
+        </div>
+      } @empty {
+        <p>Ingen arbetserfarenhet hittades.</p>
+      }
+    </div>
   </div>
 </main>
