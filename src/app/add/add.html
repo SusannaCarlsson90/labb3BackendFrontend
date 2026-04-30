@@ -2,20 +2,19 @@
   <div id="app">
     <h1>Lägg till arbetserfarenhet</h1>
     
-    <form id="experience-form">
-      <div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+    <form (ngSubmit)="addExperience()">
       
       <label for="companyname">Företagsnamn:</label><br>
-      <input type="text" id="companyname"><br><br>
+      <input type="text" name="companyname" [(ngModel)]="newExperience.companyname" required><br><br>
   
       <label for="jobtitle">Jobbtitel:</label><br>
-      <input type="text" id="jobtitle"><br><br>
+      <input type="text" name="jobtitle" [(ngModel)]="newExperience.jobtitle" required><br><br>
   
       <label for="location">Plats:</label><br>
-      <input type="text" id="location"><br><br>
+      <input type="text" name="location" [(ngModel)]="newExperience.location" required><br><br>
 
       <label for="description">Beskrivning:</label><br>
-      <textarea id="description"></textarea><br><br>
+      <textarea name="description" [(ngModel)]="newExperience.description" required></textarea><br><br>
   
       <button type="submit">Spara erfarenhet</button>
     </form>
