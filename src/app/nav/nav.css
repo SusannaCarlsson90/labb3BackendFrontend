@@ -1,0 +1,67 @@
+#main-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #170C79;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+ul li a:hover {
+  background-color: #215B63;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: block; 
+    background-color: #170C79;
+    width: 100%;
+    text-align: left;
+  }
+
+  #main-menu ul {
+    display: none; /* Dölj menyn i mobilen som standard */
+    flex-direction: column; /* Stapla länkarna på höjden */
+    width: 100%;
+  }
+
+  /* När menyn har klassen .show visas den */
+  #main-menu ul.show {
+    display: flex;
+  }
+
+  ul li {
+    width: 100%;
+  }
+
+  ul li a {
+    text-align: left;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+
+
+

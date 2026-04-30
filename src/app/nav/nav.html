@@ -1,0 +1,21 @@
+<nav id="main-menu">
+  <button class="hamburger" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <ul [class.show]="isMenuOpen">
+    
+    <li routerLinkActive="current">
+      <a routerLink="home" (click)="isMenuOpen = false">Startsida</a>
+    </li>
+    
+    <li routerLinkActive="current">
+      <a routerLink="add" (click)="isMenuOpen = false">Skoj</a>
+    </li>
+    
+    <li routerLinkActive="current">
+      <a routerLink="about" (click)="isMenuOpen = false">Om</a>
+    </li>
+    
+  </ul>
+</nav>
