@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -21,6 +22,9 @@ export class Add implements OnInit {
     description: ""
   };
 
+
+  constructor(private router: Router) { }
+
   ngOnInit() {
     this.getData();
   }
@@ -36,13 +40,12 @@ export class Add implements OnInit {
       console.error("Kunde inte hämta", error);
     }
   }
-
-  // SPARA DATA 
+//Spara data
   async addExperience() {
 
     //Validering, inga tomma fält
-   if (!this.newExperience.companyname || !this.newExperience.jobtitle || 
-    !this.newExperience.location || !this.newExperience.description){
+    if (!this.newExperience.companyname || !this.newExperience.jobtitle || 
+        !this.newExperience.location || !this.newExperience.description){
       alert("Vänligen fyll i alla fält innan du sparar!");
       return;
     }
@@ -57,17 +60,26 @@ export class Add implements OnInit {
       });
   
       if (res.ok) {
-        // Töm formuläret FÖRST NÄR VI VET att det lyckades (res.ok)
+        //Töm formuläret
         this.newExperience = { 
           companyname: '', 
           jobtitle: '', 
           location: '', 
           description: '' 
         };
+
+        // Istället för alert: Skicka användaren till startsidan där CVet syns ('/')
+      this.router.navigate(['/']);
+
+        //Hämta datan på nytt 
         this.getData();
+
+      } else {
+        alert("Ett fel uppstod på servern. Försök igen.");
       }
     } catch (error) {
       console.error("Kunde inte spara", error);
+      alert("Kunde inte kontakta servern. Kontrollera att din backend körs.");
     }
   }
 

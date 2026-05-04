@@ -9,11 +9,10 @@
           <p><strong>Företag:</strong> {{ work.companyname }}</p>
           <p><strong>Plats:</strong> {{ work.location }}</p>
           <p>{{ work.description }}</p>
+          <button (click)="deleteExperience(work._id)" class="delete-btn">Radera</button>
           <hr>
         </div>
-      } @empty {
-        <p>Ingen arbetserfarenhet hittades.</p>
-      }
+      } 
     </div>
   </div>
 </main>

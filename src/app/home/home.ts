@@ -34,4 +34,21 @@ export class Home implements OnInit {
       console.error("Kunde inte hämta data", error);
     }
   }
+  async deleteExperience(id: string) {
+    if (confirm("Är du säker på att du vill radera denna erfarenhet?")) {
+      try {
+        const res = await fetch(`http://localhost:3000/workexperiences/${id}`, {
+          method: "DELETE"
+        });
+
+        if (res.ok) {
+          // Efter att vi raderat i databasen, anropar vi getData() 
+          // igen för att hämta den uppdaterade listan till skärmen
+          this.getData();
+        }
+      } catch (error) {
+        console.error("Kunde inte radera", error);
+      }
+}
+  }
 }
